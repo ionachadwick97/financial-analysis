@@ -125,10 +125,9 @@ console.log("Financial Analysis")
 console.log("Total months: " + finances.length)
 
 //net total profit/loss
-function netprofloss(finances) {
-let total = 0
-for (let i=0; i<finances.length; i+=1) {
-total += finances[i][1]
+var total = 0
+for (var i = 0; i<finances.length; i++) {
+    total=total + finances[i][1]
 }
-console.log(total)
-}
+
+console.log("Total: $" + total)
