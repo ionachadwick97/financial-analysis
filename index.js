@@ -8,7 +8,7 @@
   // d) total = total + finances[i][1]
 
 // 3. The average of the changes in Profit/Losses over the entire period.
-  // a) create new array called it financeChanges to store changes for each months
+  // a) create new array call it financeChanges to store changes for each month
   // b) loop finances array and calculate the changes
   // c) for i in finances
   // d) var profitLosses = finances[i][1]
@@ -16,7 +16,7 @@
   // f) Be careful on the last month finances[i+1] will not exist!
   // g) find out the length of financeChanges array
   // h) Calculate the total changes using the same method as the previous question
-  // i) Calculate the averate
+  // i) Calculate the average
 
 // 4. The greatest increase in profits (date and amount) over the entire period.
   // a) var highestEarning = 0
@@ -124,10 +124,29 @@ var finances = [
 console.log("Financial Analysis")
 console.log("Total months: " + finances.length)
 
+var financeChanges = []
+
 //net total profit/loss
 var total = 0
+var difference = 0
 for (var i = 0; i<finances.length; i++) {
     total=total + finances[i][1]
+    difference = finances[i++][1] - finances[i][1]
+    financeChanges.push(difference)
+    //console.log(financeChanges)
 }
 
 console.log("Total: $" + total)
+
+function totalChanges(currentTotal, difference) {
+  let finalTotal = currentTotal + difference
+  return finalTotal
+}
+
+let changes = financeChanges.reduce(totalChanges, 0)
+
+//console.log(changes)
+
+let finalChange = changes/86
+
+console.log("Average changes: " + finalChange.toFixed(2))
