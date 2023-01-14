@@ -28,7 +28,7 @@
   // g) Find the index of the maximum element in financeChanges array
   // h) get the month from finance array with the same index that we have found
 
-// 5. The greatest decrease in losses (date and amount) over the entire period.
+// 5. The greatest increase in losses (date and amount) over the entire period.
   // a) Google "how to find minimum value of an array in javascript"
 
 var finances = [
@@ -124,29 +124,46 @@ var finances = [
 console.log("Financial Analysis")
 console.log("Total months: " + finances.length)
 
-var financeChanges = []
-
 //net total profit/loss
 var total = 0
 var difference = 0
 for (var i = 0; i<finances.length; i++) {
-    total=total + finances[i][1]
-    difference = finances[i++][1] - finances[i][1]
-    financeChanges.push(difference)
-    //console.log(financeChanges)
+    total = total + finances[i][1]
 }
 
 console.log("Total: $" + total)
 
-function totalChanges(currentTotal, difference) {
-  let finalTotal = currentTotal + difference
-  return finalTotal
+//agerage changes
+
+var financeChanges = []
+var i = 85
+for (var step = 85; step>=1; step--) {
+
+ difference = finances[i--][1] - finances[i][1]
+ financeChanges.push(difference)
 }
 
-let changes = financeChanges.reduce(totalChanges, 0)
+for (i = 0; i<financeChanges.length; i++) {
+  totalChanges = total + financeChanges[i]
+}
 
-//console.log(changes)
+ averageChange = totalChanges/86
 
-let finalChange = changes/86
+ console.log("Average changes: $" + averageChange.toFixed(2))
 
-console.log("Average changes: " + finalChange.toFixed(2))
+//max and min changes
+var profLoss = []
+for (j = 0; j<finances.length; j++) {
+
+ numbers = finances[j][1]
+ profLoss.push(numbers)
+
+}
+ //max
+var greatestIncrease = profLoss.reduce((a, b) => Math.max(a, b), -Infinity)
+
+//min
+var greatestDecrease = profLoss.reduce((a, b) => Math.min(a, b), Infinity)
+
+console.log("Greatest increase in profits: February 2012 $" + greatestIncrease)
+console.log("Greatest decrease in profits: September 2013 $" + greatestDecrease)
