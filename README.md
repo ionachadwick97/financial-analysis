@@ -1,4 +1,4 @@
-# week-4-challenge
+# financial-analysis
 
 ## Description
 
